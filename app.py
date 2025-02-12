@@ -25,7 +25,11 @@ total_laps = int(laps['LapNumber'].max())
 weather = get_f1_weather(sessions[-1])
 
 st.write(f"**Current Weather:** 🌡️ {weather['temperature']}°C, 💧 {weather['humidity']}%, ☁️ {weather['weather_condition']}")
-model, feature_names = train_ml_model(laps)
+# Ensure laps is a Pandas DataFrame
+laps_df = laps.to_dataframe() if hasattr(laps, 'to_dataframe') else laps
+
+# Train the model (cached)
+model, feature_names = train_ml_model(laps_df)
 
 # Best Strategy
 st.write("## 🏁 Best Strategy Found")
