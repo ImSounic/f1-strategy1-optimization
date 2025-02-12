@@ -13,6 +13,7 @@ fastf1.Cache.enable_cache('cache')
 
 
 # Function to load multi-year race data dynamically
+@st.cache_data
 def load_multi_year_data(years, gp_name):
     laps_data = []
     sessions = []
@@ -39,30 +40,33 @@ def get_f1_weather(session):
     }
     return weather
 
+# Train and cache ML model
+@st.cache_resource
+def train_ml_model(_laps):
+    # Ensure _laps is a DataFrame
+    if not isinstance(_laps, pd.DataFrame):
+        raise ValueError("Expected a Pandas DataFrame for laps data.")
 
-# Function to train the machine learning model
-def train_ml_model(laps):
-    laps = laps.dropna(subset=['LapTime'])
-    laps = laps.copy()
-    laps['LapTimeSeconds'] = laps['LapTime'].dt.total_seconds()
-    features = laps[['LapNumber', 'TyreLife', 'TrackStatus', 'Compound']]
+    # Drop rows where 'LapTime' is missing
+    _laps = _laps.dropna(subset=['LapTime']).copy()
+
+    # Convert LapTime to total seconds
+    _laps['LapTimeSeconds'] = _laps['LapTime'].dt.total_seconds()
+
+    # Feature selection & encoding categorical variables
+    features = _laps[['LapNumber', 'TyreLife', 'TrackStatus', 'Compound']]
     features = pd.get_dummies(features, columns=['Compound', 'TrackStatus'])
-    target = laps['LapTimeSeconds']
 
-    train_features = features[:-100]
-    test_features = features[-100:]
-    train_target = target[:-100]
-    test_target = target[-100:]
+    # Target variable
+    target = _laps['LapTimeSeconds']
 
-    if train_target.isna().any() or train_features.isna().any().any():
-        print("⚠️ Warning: NaN values detected in training data. Cleaning up...")
-        train_features = train_features.dropna()
-        train_target = train_target.dropna()
+    # Train the RandomForest model
+    model = RandomForestRegressor(n_estimators=50, random_state=42, n_jobs=-1)
+    model.fit(features, target)
 
-    model = RandomForestRegressor(n_estimators=100, random_state=42)
-    model.fit(train_features, train_target)
+    return model, features.columns
 
-    return model, train_features.columns
+
 
 
 # Function to predict lap times using the trained model
