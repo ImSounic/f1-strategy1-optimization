@@ -31,41 +31,30 @@ python main.py
 - ✅ Compare alternative strategies.
 - ✅ Predict driver-specific strategies based on grid position.
 
-### Phase 2: Version Control & Documentation
-- 🔹 Upload the existing Python project to GitHub.
-- 🔹 Finalize README and add installation/setup instructions.
-- 🔹 Set up GitHub Issues for tracking improvements.
-
-### Phase 3: Web Application Development
+### Phase 2: Web Application Development
 - 🔹 Choose a web framework (FastAPI for backend + React or Next.js for frontend).
 - 🔹 Design an interactive UI for strategy visualization.
 - 🔹 Implement user input fields for selecting a Grand Prix, driver, and grid position.
 
-### Phase 4: Backend Implementation
+### Phase 3: Backend Implementation
 - 🔹 Create API endpoints to return strategy results.
 - 🔹 Optimize data handling and caching to improve performance.
 - 🔹 Implement error handling for API failures.
 
-### Phase 5: Frontend Development
+### Phase 4: Frontend Development
 - 🔹 Build a visually appealing dashboard.
 - 🔹 Use **charts & graphs** to display strategies dynamically.
 - 🔹 Allow users to compare multiple strategies side by side.
 
-### Phase 6: Deployment & CI/CD
-- 🔹 Deploy backend to **Render, Railway, or AWS**.
-- 🔹 Deploy frontend using **Vercel or Netlify**.
-- 🔹 Set up GitHub Actions for automated testing and deployment.
-
-### Phase 7: Advanced Features
+### Phase 5: Advanced Features
 - 🔹 Introduce live weather API integration.
 - 🔹 Implement **real-time race data tracking**.
 - 🔹 Add a **strategy recommender AI model**.
 
-### Phase 8: Desktop Application
+### Phase 6: Desktop Application
 - 🔹 Convert the web app into a **desktop app** using **Electron or Tauri**.
 
-## 📜 License
-This project is licensed under the MIT License.
+
 
 ## 👤 Author
 **Sounic**  
