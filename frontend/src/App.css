@@ -1,0 +1,87 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app-container {
+  background: #1e1e1e;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+  text-align: center;
+  width: 600px;
+}
+
+.title {
+  color: #ff4500;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.input-container {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.input-container select,
+.input-container input {
+  width: 80%;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  background: #2c2c2c;
+  color: white;
+}
+
+.submit-btn {
+  background: #ff4500;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #e03e00;
+}
+
+.submit-btn:disabled {
+  background: #777;
+  cursor: not-allowed;
+}
+
+.strategy-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #282828;
+  border-radius: 8px;
+}
+
+.strategy-section {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #333;
+  border-radius: 5px;
+}
+
+h2 {
+  color: #ff4500;
+  margin-top: 1rem;
+}

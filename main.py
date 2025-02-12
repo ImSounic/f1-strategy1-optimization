@@ -42,23 +42,23 @@ def get_f1_weather(session):
 
 # Train and cache ML model
 @st.cache_resource
-def train_ml_model(_laps):
+def train_ml_model(laps):
     # Ensure _laps is a DataFrame
-    if not isinstance(_laps, pd.DataFrame):
+    if not isinstance(laps, pd.DataFrame):
         raise ValueError("Expected a Pandas DataFrame for laps data.")
 
     # Drop rows where 'LapTime' is missing
-    _laps = _laps.dropna(subset=['LapTime']).copy()
+    laps = laps.dropna(subset=['LapTime']).copy()
 
     # Convert LapTime to total seconds
-    _laps['LapTimeSeconds'] = _laps['LapTime'].dt.total_seconds()
+    laps['LapTimeSeconds'] = laps['LapTime'].dt.total_seconds()
 
     # Feature selection & encoding categorical variables
-    features = _laps[['LapNumber', 'TyreLife', 'TrackStatus', 'Compound']]
+    features = laps[['LapNumber', 'TyreLife', 'TrackStatus', 'Compound']]
     features = pd.get_dummies(features, columns=['Compound', 'TrackStatus'])
 
     # Target variable
-    target = _laps['LapTimeSeconds']
+    target = laps['LapTimeSeconds']
 
     # Train the RandomForest model
     model = RandomForestRegressor(n_estimators=50, random_state=42, n_jobs=-1)
